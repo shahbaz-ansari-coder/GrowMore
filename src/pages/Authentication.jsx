@@ -14,7 +14,7 @@ const Authentication = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:3000/api/auth/login", {
+      .post("https://grow-more-backend-zeta.vercel.app/api/auth/login", {
         email: email,
         password: password,
       })
@@ -33,7 +33,7 @@ const login = useGoogleLogin({
     const token = tokenResponse.access_token;
 
     try {
-      const res = await axios.post("http://localhost:3000/api/auth/google", {
+      const res = await axios.post("https://grow-more-backend-zeta.vercel.app/api/auth/google", {
         token,
       });
       toast.success(res.data.message);
