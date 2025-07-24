@@ -1,0 +1,115 @@
+/* Loader CSS */
+.pyramid-loader {
+  position: relative;
+  width: 20vw;
+  max-width: 300px;
+  min-width: 150px;
+  aspect-ratio: 1 / 1;
+  margin: auto;
+  transform-style: preserve-3d;
+  transform: rotateX(-20deg);
+}
+
+.wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  animation: spin 4s linear infinite;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotateY(360deg);
+  }
+}
+
+.pyramid-loader .wrapper .side {
+  width: 35%;
+  height: 35%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  transform-origin: center top;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+.pyramid-loader .wrapper .side1 {
+  transform: rotateZ(-30deg) rotateY(90deg);
+  background: conic-gradient(from 180deg, #fed330, #f6b93b, #fa8231, #fed330);
+}
+
+.pyramid-loader .wrapper .side2 {
+  transform: rotateZ(30deg) rotateY(90deg);
+  background: conic-gradient(from 180deg, #fed330, #e58e26, #f79f1f, #fed330);
+}
+
+.pyramid-loader .wrapper .side3 {
+  transform: rotateX(30deg);
+  background: conic-gradient(from 180deg, #fed330, #f6b93b, #f7d794, #fed330);
+}
+
+.pyramid-loader .wrapper .side4 {
+  transform: rotateX(-30deg);
+  background: conic-gradient(from 180deg, #fed330, #fa8231, #f7b731, #fed330);
+}
+
+.pyramid-loader .wrapper .shadow {
+  width: 30%;
+  height: 30%;
+  background: #f6b93b;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  transform: rotateX(90deg) translateZ(-40px);
+  filter: blur(12px);
+}
+
+/* Animation */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-15px) rotate(180deg);
+  }
+}
+
+@keyframes floatReverse {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(15px) rotate(-180deg);
+  }
+}
+
+@keyframes pulse-gold {
+  0%,
+  100% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+.float-element {
+  animation: float 8s ease-in-out infinite;
+}
+
+.float-reverse {
+  animation: floatReverse 10s ease-in-out infinite;
+}
+
+.pulse-gold {
+  animation: pulse-gold 4s ease-in-out infinite;
+}

@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Caveat:wght@400..700&family=K2D:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+@import "tailwindcss";
+
+body{
+  font-family: "Poppins" ,sans-serif ;
+}
+
+
+@theme {
+  /* ✅ Fonts */
+  --font-bebas: "Bebas Neue", cursive;
+  --font-caveat: "Caveat", cursive;
+  --font-k2d: "K2D", sans-serif;
+  --font-poppins: "Poppins", sans-serif;
+  --font-worksans: "Work Sans", sans-serif;
+
+  /* ✅ Colors */
+  --color-primary: #f6b93b;
+  --color-gray: #8B96A5;
+  --color-dark: #33322E;
+  --color-success: #00B517;
+  --color-danger: #EB001B;
+}
