@@ -87,7 +87,7 @@ export default function PyramidLoaderPage() {
               : "opacity-0 translate-y-10"
           }`}
         >
-          <Link to={'/login'} className="w-full">
+          <Link to={'/auth'} className="w-full">
           <button
             size="lg"
             className="bg-gradient-to-r w-full cursor-pointer flex justify-center items-center gap-2 from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-black font-semibold px-8 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
