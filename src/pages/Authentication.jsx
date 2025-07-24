@@ -58,10 +58,10 @@ const login = useGoogleLogin({
         <div className="absolute inset-0 bg-gradient-to-tl from-gray-800 via-gray-700 to-gray-900 opacity-50"></div>
 
         {/* Trading Chart Pattern Elements */}
-        <div className="absolute top-16 left-16 w-24 h-24 border-2 border-yellow-500 border-opacity-20 rounded-full float-element"></div>
-        <div className="absolute bottom-16 right-16 w-32 h-32 border-2 border-yellow-500 border-opacity-10 rounded-full float-reverse"></div>
-        <div className="absolute top-1/3 left-8 w-20 h-20 bg-yellow-500 bg-opacity-5 rounded-full pulse-gold"></div>
-        <div className="absolute top-12 right-12 w-28 h-28 bg-yellow-500 bg-opacity-5 rounded-lg rotate-45 pulse-gold"></div>
+        <div className="absolute hidden md:block top-16 left-16 w-24 h-24 border-2 border-yellow-500 border-opacity-20 rounded-full float-element"></div>
+        <div className="absolute hidden md:block bottom-16 right-16 w-32 h-32 border-2 border-yellow-500 border-opacity-10 rounded-full float-reverse"></div>
+        <div className="absolute hidden md:block top-1/3 left-8 w-20 h-20 bg-yellow-500 bg-opacity-5 rounded-full pulse-gold"></div>
+        <div className="absolute hidden md:block top-12 right-12 w-28 h-28 bg-yellow-500 bg-opacity-5 rounded-lg rotate-45 pulse-gold"></div>
 
         {/* Trading Grid Pattern */}
         <div className="absolute inset-0 opacity-5">
