@@ -25,7 +25,7 @@ export default function PyramidLoaderPage() {
         return navigate('/auth')
       }
          axios
-           .get(`http://localhost:3000/api/user/get-user/${uid}`)
+           .get(`https://grow-more-backend-zeta.vercel.app/api/user/get-user/${uid}`)
            .then((res) => {
             console.log(res.data);
              if (res.data.user.role === 'admin') {

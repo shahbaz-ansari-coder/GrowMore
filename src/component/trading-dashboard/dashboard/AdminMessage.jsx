@@ -20,7 +20,7 @@ const AdminMessage = ({ data }) => {
 
   const handleDelete = async () => {
     axios
-      .post(`http://localhost:3000/api/user/delete-message`, {
+      .post(`https://grow-more-backend-zeta.vercel.app/api/user/delete-message`, {
         uid: uid,
         messageId: data._id,
       })

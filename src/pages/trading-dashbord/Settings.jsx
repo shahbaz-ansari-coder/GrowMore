@@ -31,7 +31,7 @@ const AvatarSelectionModal = ({ onClose, onSelectAvatar  , selectedAvatar}) => {
 
   const handleChange = async (avatar) => {
      axios
-       .post(`http://localhost:3000/api/user/update-avatar/${uid}`, {
+       .post(`https://grow-more-backend-zeta.vercel.app/api/user/update-avatar/${uid}`, {
          avatar: avatar,
        })
        .then((res) => {
@@ -171,7 +171,7 @@ const ChangePasswordModal = ({ onClose, userId }) => {
 
     try {
       const response = await axios.post(
-        `http://localhost:3000/api/user/update-password/${uid}`,
+        `https://grow-more-backend-zeta.vercel.app/api/user/update-password/${uid}`,
         {
           currentPassword,
           newPassword,
@@ -300,7 +300,7 @@ const SettingsPage = () => {
 
   const getData = async () => {
     axios
-      .get(`http://localhost:3000/api/user/get-user/${uid}`)
+      .get(`https://grow-more-backend-zeta.vercel.app/api/user/get-user/${uid}`)
       .then((res) => {
         setData(res.data.user);
         setSelectedAvatar(res.data.user.avatar);

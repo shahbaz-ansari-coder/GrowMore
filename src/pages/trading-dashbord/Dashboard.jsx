@@ -9,7 +9,7 @@ const TradingDashboard = () => {
   const [data, setData] = useState(null);
   
   const getData = async () => {
-        axios.get(`http://localhost:3000/api/user/get-user/${uid}`)
+        axios.get(`https://grow-more-backend-zeta.vercel.app/api/user/get-user/${uid}`)
       .then((res) => {
         setData(res.data.user)
       })

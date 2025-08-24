@@ -421,7 +421,7 @@ const AddUserModal = ({ onClose, onAddUser, getData }) => {
     setMessage(null);
 
     axios
-      .post(`http://localhost:3000/api/admin/add-user/${uid}`, {
+      .post(`https://grow-more-backend-zeta.vercel.app/api/admin/add-user/${uid}`, {
         name: name,
         email: email,
         password: password,
@@ -589,7 +589,7 @@ const EditUserModal = ({ onClose, getData, user }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .put(`http://localhost:3000/api/admin/update-user/${uid}`, {
+      .put(`https://grow-more-backend-zeta.vercel.app/api/admin/update-user/${uid}`, {
         name: name,
         email: email,
         password: password,
@@ -947,7 +947,7 @@ const SendMessageModal = ({ onClose, user, onSendMessage , getData }) => {
       return;
     }
     axios
-      .post(`http://localhost:3000/api/admin/send-message/${uid}`, {
+      .post(`https://grow-more-backend-zeta.vercel.app/api/admin/send-message/${uid}`, {
         uid: user._id,
         text: messageText,
       })
@@ -1053,7 +1053,7 @@ const AdminPage = () => {
 
   const getData = async () => {
     axios
-      .get(`http://localhost:3000/api/admin/get-all-users/${uid}`)
+      .get(`https://grow-more-backend-zeta.vercel.app/api/admin/get-all-users/${uid}`)
       .then((res) => {
         setUsersData(res.data.users);
       })
@@ -1097,7 +1097,7 @@ const AdminPage = () => {
     setConfirmAction(() => () => {
       if (action === 'block') {
         axios
-          .post(`http://localhost:3000/api/admin/block-user/${uid}`, {
+          .post(`https://grow-more-backend-zeta.vercel.app/api/admin/block-user/${uid}`, {
              uid: user._id 
           })
           .then((res) => {
@@ -1112,7 +1112,7 @@ const AdminPage = () => {
           });
       }else{
            axios
-             .post(`http://localhost:3000/api/admin/unblock-user/${uid}`, {
+             .post(`https://grow-more-backend-zeta.vercel.app/api/admin/unblock-user/${uid}`, {
                uid: user._id,
              })
              .then((res) => {
@@ -1137,7 +1137,7 @@ const AdminPage = () => {
     );
     setConfirmAction(() => () => {
       axios
-        .delete(`http://localhost:3000/api/admin/delete-user/${uid}`, {
+        .delete(`https://grow-more-backend-zeta.vercel.app/api/admin/delete-user/${uid}`, {
           data: { uid: user._id },
         })
         .then((res) => {

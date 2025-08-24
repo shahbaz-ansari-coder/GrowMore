@@ -53,7 +53,7 @@ const TradingNavbar = () => {
 
   const getData = async () => {
     axios
-      .get(`http://localhost:3000/api/user/get-user/${uid}`)
+      .get(`https://grow-more-backend-zeta.vercel.app/api/user/get-user/${uid}`)
       .then((res) => {
         setUserData(res.data.user);
       })
@@ -64,12 +64,12 @@ const TradingNavbar = () => {
 
   const setOnline = async () => {
     await axios
-      .put(`http://localhost:3000/api/user/set-online/${uid}`);
+      .put(`https://grow-more-backend-zeta.vercel.app/api/user/set-online/${uid}`);
   };
 
   const setOffline = () => {
     // Axios kaam nahi karega tab close pe → sendBeacon use karo
-    navigator.sendBeacon(`http://localhost:3000/api/user/set-offline/${uid}`);
+    navigator.sendBeacon(`https://grow-more-backend-zeta.vercel.app/api/user/set-offline/${uid}`);
   };
 
 

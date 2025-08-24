@@ -254,7 +254,7 @@ const AddTradeModal = ({
     setIsSubmitting(true);
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/trades/buy",
+        "https://grow-more-backend-zeta.vercel.app/api/trades/buy",
         {
           userId: USER_ID,
           coinName: selectedCoin.name,
@@ -676,7 +676,7 @@ const SellTradeModal = ({
     setIsSubmitting(true);
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/trades/sell",
+        "https://grow-more-backend-zeta.vercel.app/api/trades/sell",
         {
           userId: USER_ID,
           tradeId: trade.tradeId,
@@ -843,7 +843,7 @@ const CryptoTradingApp = () => {
     setLoadingTrades(true);
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/trades/get-all/${USER_ID}`
+        `https://grow-more-backend-zeta.vercel.app/api/trades/get-all/${USER_ID}`
       );
       if (response.data.trades) {
         const formattedTrades = response.data.trades.map((trade) => ({
