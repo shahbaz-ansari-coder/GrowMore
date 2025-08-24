@@ -17,7 +17,7 @@ export default defineConfig({
         short_name: 'GrowMore',
         description: 'GrowMore for Paper Trading Website',
         theme_color: '#f6b93b',
-        background_color: '#ffffff',
+        background_color: '#33322E',
         display: 'standalone',
         start_url: '/',
         icons: [

@@ -4,12 +4,19 @@ import { useState } from "react";
 import { FaUser } from "react-icons/fa";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { IoMdLock } from "react-icons/io";
+import { useDispatch, useSelector } from "react-redux";
 import { toast, ToastContainer } from "react-toastify";
+import { setUser } from "../features/user/userSlice";
 
 const Authentication = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+    const user = useSelector((state) => state.user);
+    console.log(user);
+    
+    
+  const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,6 +27,7 @@ const Authentication = () => {
       })
       .then((res) => {
         console.log(res.data);
+        dispatch(setUser(res.data.user));
         toast.success(res.data.message);
       })
       .catch((err) => {
@@ -37,6 +45,7 @@ const login = useGoogleLogin({
         token,
       });
       toast.success(res.data.message);
+      dispatch(setUser(res.data.user));
       console.log(res.data);
     } catch (err) {
       toast.error(err.response?.data?.message || "Something went wrong");
