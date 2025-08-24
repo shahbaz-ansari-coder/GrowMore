@@ -2,11 +2,14 @@
 
 import { useState, useEffect } from "react";
 import { ArrowRight, X, TrendingUp, BarChart3, Zap } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function PyramidLoaderPage() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [showContent, setShowContent] = useState(false);
+  const navigate = useNavigate();
+  const uid = localStorage.getItem('uid');
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -15,6 +18,27 @@ export default function PyramidLoaderPage() {
     }, 2000);
     return () => clearTimeout(timer);
   }, []);
+
+  
+    const handleUser = () =>{
+      if (!uid) {
+        return navigate('/auth')
+      }
+         axios
+           .get(`http://localhost:3000/api/user/get-user/${uid}`)
+           .then((res) => {
+            console.log(res.data);
+             if (res.data.user.role === 'admin') {
+               navigate("/admin");
+            }else{
+              navigate("/dashboard/overview");
+             }
+           })
+           .catch((err) => {
+             console.log(err);
+             navigate("/auth");
+           });
+    }
 
   return (
     <div className="min-h-screen relative overflow-hidden flex items-center justify-center p-4 bg-gray-900">
@@ -42,7 +66,7 @@ export default function PyramidLoaderPage() {
             </span>
           </div>
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 bg-clip-text text-transparent mb-4">
-            Shahbaz Ansari
+            Grow More
           </h1>
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-200 mb-4">
             Professional Trading Hub
@@ -87,15 +111,14 @@ export default function PyramidLoaderPage() {
               : "opacity-0 translate-y-10"
           }`}
         >
-          <Link to={'/auth'} className="w-full">
           <button
+          onClick={handleUser}
             size="lg"
             className="bg-gradient-to-r w-full cursor-pointer flex justify-center items-center gap-2 from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-black font-semibold px-8 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
           >
             Continue
             <ArrowRight className="ml-2 h-5 w-5" />
           </button>
-          </Link>
         </div>
       </div>
     </div>

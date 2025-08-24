@@ -6,57 +6,68 @@ import { FiEye, FiEyeOff } from "react-icons/fi";
 import { IoMdLock } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import { toast, ToastContainer } from "react-toastify";
-import { setUser } from "../features/user/userSlice";
+import {  useNavigate } from "react-router-dom";
 
 const Authentication = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-    const user = useSelector((state) => state.user);
-    console.log(user);
-    
-    
-  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     axios
-      .post("https://grow-more-backend-zeta.vercel.app/api/auth/login", {
+      .post("http://localhost:3000/api/auth/login", {
         email: email,
         password: password,
       })
       .then((res) => {
-        console.log(res.data);
-        dispatch(setUser(res.data.user));
         toast.success(res.data.message);
+        localStorage.setItem("uid", res.data.user.id);
+        localStorage.setItem("sessionToken", res.data.token);
+       if (res.data.user.role === "admin") {
+         location.href = "/admin";
+       } else {
+         location.href = "/dashboard/overview";
+       }
       })
       .catch((err) => {
         toast.error(err.response?.data?.message || "Something went wrong");
         console.log(err);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
-const login = useGoogleLogin({
-  onSuccess: async (tokenResponse) => {
-    const token = tokenResponse.access_token;
+  const login = useGoogleLogin({
+    onSuccess: async (tokenResponse) => {
+      const token = tokenResponse.access_token;
 
-    try {
-      const res = await axios.post("https://grow-more-backend-zeta.vercel.app/api/auth/google", {
-        token,
-      });
-      toast.success(res.data.message);
-      dispatch(setUser(res.data.user));
-      console.log(res.data);
-    } catch (err) {
-      toast.error(err.response?.data?.message || "Something went wrong");
-      console.log(err);
-    }
-  },
-  onError: () => {
-    toast.error("Google Login Failed");
-  },
-});
-
+      try {
+        const res = await axios.post("http://localhost:3000/api/auth/google", {
+          token,
+        });
+        toast.success(res.data.message);
+        localStorage.setItem("uid", res.data.user.id);
+        localStorage.setItem("sessionToken", res.data.token);
+        if (res.data.user.role === "admin") {
+          location.href ="/admin";
+        } else {
+          location.href = "/dashboard/overview";
+        }
+      } catch (err) {
+        toast.error(err.response?.data?.message || "Something went wrong");
+        console.log(err);
+      }
+    },
+    onError: () => {
+      toast.error("Google Login Failed");
+    },
+  });
 
   return (
     <>
@@ -100,7 +111,7 @@ const login = useGoogleLogin({
                 GrowMore
               </h1>
               <p className="text-gray-300 text-left text-sm -mt-1">
-                This trading platform is exclusively for Shahbaz Ansari
+                Private Trading Platform. Built by Shahbaz Ansari
               </p>
             </div>
           </div>
@@ -167,9 +178,10 @@ const login = useGoogleLogin({
             {/* Sign In Button */}
             <button
               type="submit"
-              className="w-full text-gray-900 bg-[#f6b93b] hover:bg-[#f6b93b] font-semibold py-3 px-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 cursor-pointer focus:outline-none focus:ring-opacity-50 mt-6"
+              className="disabled:bg-[#f6b83be1] w-full text-gray-900 bg-[#f6b93b]  hover:bg-[#f6b93b] font-semibold py-3 px-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 cursor-pointer focus:outline-none focus:ring-opacity-50 mt-6 disabled:opacity-50 disabled:cursor-not-allowed"
+              disabled={loading}
             >
-              Access Trading Platform
+              {loading ? "Loading..." : "Login"}
             </button>
           </form>
 
@@ -186,10 +198,6 @@ const login = useGoogleLogin({
           </div>
 
           {/* Google Login Button */}
-          {/* <GoogleLogin
-            onSuccess={handleGoogle}
-            onError={() => console.log("Google Failed")}
-          /> */}
           <button
             onClick={() => login()}
             type="button"
