@@ -38,22 +38,29 @@ const getCurrencySymbol = () => "$";
 
 const formatPrice = (price) => {
   const currencySymbol = getCurrencySymbol();
-  if (price === null || price === undefined || isNaN(price)) return "N/A";
 
-  if (price >= 1000) {
-    return `${currencySymbol}${price.toLocaleString(undefined, {
+  // Convert to number safely
+  const numericPrice = Number(price);
+
+  if (price === null || price === undefined || isNaN(numericPrice)) {
+    return "N/A";
+  }
+
+  if (numericPrice >= 1000) {
+    return `${currencySymbol}${numericPrice.toLocaleString(undefined, {
       minimumFractionDigits: 0,
       maximumFractionDigits: 0,
     })}`;
-  } else if (price >= 1) {
-    return `${currencySymbol}${price.toLocaleString(undefined, {
+  } else if (numericPrice >= 1) {
+    return `${currencySymbol}${numericPrice.toLocaleString(undefined, {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
     })}`;
   } else {
-    return `${currencySymbol}${price.toFixed(6)}`;
+    return `${currencySymbol}${numericPrice.toFixed(6)}`;
   }
 };
+
 
 const formatAmount = (amount) => {
   if (amount === null || amount === undefined || isNaN(amount)) return "N/A";
